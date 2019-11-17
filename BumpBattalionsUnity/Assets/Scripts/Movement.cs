@@ -19,10 +19,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetMovementAxisValues(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//temporary to test moving around the unit
+        //SetMovementAxisValues(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//temporary to test moving around the unit
+        rigbod.velocity = new Vector2(0.0f, 0.0f);
         if (canMove)
         {
-            rigbod.velocity = new Vector2(baseSpeed * HorizontalAxis, baseSpeed * verticalAxis);
+            if (PlayerCommander.instance.play || CompareTag("Cursor"))
+            {
+                rigbod.velocity = new Vector2(baseSpeed * HorizontalAxis, baseSpeed * verticalAxis);
+            }
         }
     }
 
