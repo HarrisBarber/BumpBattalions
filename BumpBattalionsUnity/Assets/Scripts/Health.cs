@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private int health;
+    private float health;
     [SerializeField]
-    private int maxHealth = 100;
+    private float maxHealth = 100;
+    [SerializeField]
+    private float regenRate = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +18,27 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerCommander.instance.play)
+        {
+            health = health + regenRate >= maxHealth ? maxHealth : health + regenRate;
+        }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        health -= damage;
+        if (PlayerCommander.instance.play)
+        {
+            health -= damage;
+        }
     }
 
-    public int getHealth()
+    public float getHealth()
     {
         return health;
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
     }
 }
