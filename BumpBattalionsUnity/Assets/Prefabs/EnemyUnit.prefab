@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  chaser: 0
 --- !u!114 &3200869753885103980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37541ec99a0c69943b4ceb9a674c347b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 5
+  baseSpeed: 4
 --- !u!114 &3200869753885103981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
+  regenRate: 1
 --- !u!1 &3200869754980055417
 GameObject:
   m_ObjectHideFlags: 0

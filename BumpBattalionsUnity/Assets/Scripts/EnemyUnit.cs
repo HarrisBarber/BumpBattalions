@@ -6,6 +6,7 @@ public class EnemyUnit : MonoBehaviour
 {
     Health health;
     SpriteRenderer sprite;
+    Movement movement;
     [SerializeField]
     private float damage = 5;
     [SerializeField]
@@ -16,6 +17,7 @@ public class EnemyUnit : MonoBehaviour
     {
         health = GetComponent<Health>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,27 @@ public class EnemyUnit : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        if (chaser)
+        {
+            if (target == null)
+            {
+                PlayerUnit[] foundObjs = FindObjectsOfType<PlayerUnit>();
+
+                Vector3 nearestDist = new Vector3(float.MaxValue, float.MaxValue);
+
+                foreach (PlayerUnit unit in foundObjs)
+                {
+                    Vector3 dist = unit.transform.position - transform.position;
+                    if (dist.magnitude < nearestDist.magnitude)
+                    {
+                        nearestDist = dist;
+                        target = unit.gameObject;
+                    }
+                }
+            }
+
+            movement.SetMovementAxisValues(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y);
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
