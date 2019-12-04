@@ -7,7 +7,9 @@ public class Movement : MonoBehaviour
     Rigidbody2D rigbod;
     [SerializeField]
     private float baseSpeed = 5.0f;
+    [SerializeField]
     private float HorizontalAxis = 0.0f;
+    [SerializeField]
     private float verticalAxis = 0.0f;
     private bool canMove = true;
     // Start is called before the first frame update
